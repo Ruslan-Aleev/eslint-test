@@ -9,10 +9,8 @@ jobs:
       pull-requests: write
 
     steps:
+      - name: Checkout repo
       - uses: actions/checkout@v3
-
-      - name: Stylelint Owner Fix
-        run: sudo chown -R root:root $GITHUB_WORKSPACE
 
       - name: Run stylelint with reviewdog
         uses: reviewdog/action-stylelint@v1
@@ -21,6 +19,6 @@ jobs:
           fail_on_error: true
           reporter: github-pr-review
           filter_mode: diff_context
-          packages: 'stylelint-config-standard stylelint-order stylelint-config-rational-order'
+          packages: 'stylelint-order stylelint-config-rational-order'
           stylelint_config: '.stylelintrc.json'
           stylelint_input: '**/*.css'
