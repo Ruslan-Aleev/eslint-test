@@ -1,25 +1,20 @@
 name: reviewdog
-
-on:
-  pull_request:
-    types: [synchronize, opened]
+on: [pull_request]
 
 jobs:
   stylelint:
+    name: runner / stylelint
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
 
     steps:
       - uses: actions/checkout@v3
-
-      - name: stylelint
+      - name: Run stylelint with reviewdog
         uses: reviewdog/action-stylelint@v1
         with:
-          github_token: ${{ secrets.github_token }}
-          fail_on_error: true
-          reporter: github-pr-review
+          github_token: ${{ secrets.TOKEN }}
           packages: 'stylelint-config-standard stylelint-order stylelint-config-rational-order'
-          filter_mode: 'diff_context'
-          stylelint_config: '.stylelintrc.json'
+          reporter: github-pr-review
           stylelint_input: '**/*.css'
+          stylelint_config: .stylelintrc.json
