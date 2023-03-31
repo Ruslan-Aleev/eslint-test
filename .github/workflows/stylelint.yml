@@ -10,6 +10,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
+      - name: Stylelint Owner Fix
+        run: sudo chown -R root:root $GITHUB_WORKSPACE
+
       - name: Run stylelint with reviewdog
         uses: reviewdog/action-stylelint@v1
         with:
