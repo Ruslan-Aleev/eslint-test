@@ -1,23 +1,14 @@
-name: Stylelint
+name: reviewdog
 on: pull_request
 
 jobs:
   stylelint:
     name: runner / stylelint
     runs-on: ubuntu-latest
-
-    strategy:
-      fail-fast: false
-
     steps:
       - uses: actions/checkout@v3
-
-      - uses: actions/setup-node@v3
+      - name: stylelint
+        uses: reviewdog/action-stylelint@v1
         with:
-          node-version: 14
-
-      - name: stylelint-github-pr-check
-        uses: ./
-        with:
-          github_token: ${{ secrets.github_token }}
-          stylelint_config: .stylelintrc.json
+          reporter: github-pr-review
+          stylelint_input: '**/*.css'
