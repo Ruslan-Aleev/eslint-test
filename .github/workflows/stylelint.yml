@@ -14,7 +14,9 @@ jobs:
         uses: reviewdog/action-stylelint@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          packages: 'stylelint-config-standard stylelint-order stylelint-config-rational-order'
+          fail_on_error: true
           reporter: github-pr-review
+          filter_mode: diff_context
+          packages: 'stylelint-config-standard stylelint-order stylelint-config-rational-order'
+          stylelint_config: '.stylelintrc.json'
           stylelint_input: '**/*.css'
-          stylelint_config: .stylelintrc.json
