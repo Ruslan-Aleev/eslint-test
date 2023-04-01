@@ -16,4 +16,5 @@ jobs:
           reporter: github-pr-review
           packages: 'stylelint-order'
           stylelint_input: '**/*.css'
+          stylelint_config: .stylelint.js
           fail_on_error: true
