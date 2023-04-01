@@ -8,6 +8,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+      - run: npm ci
 
       - name: Run stylelint with reviewdog
         uses: reviewdog/action-stylelint@v1
@@ -17,5 +22,5 @@ jobs:
           reporter: github-pr-review
           filter_mode: diff_context
           packages: 'stylelint-config-standard stylelint-order stylelint-config-rational-order'
-          stylelint_config: '.stylelintrc'
+          stylelint_config: '.stylelintrc.json'
           stylelint_input: '**/*.css'
