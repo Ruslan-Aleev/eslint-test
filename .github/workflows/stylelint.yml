@@ -1,18 +1,16 @@
-name: Primary Linter
-on:
-  pull_request
-
+name: reviewdog
+on: [pull_request]
 jobs:
   stylelint:
+    name: runner / stylelint
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
-      - name: Check out PR \# ${{ github.event.pull_request.number }}
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+      - uses: reviewdog/action-stylelint@v1
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
-      - name: Run stylelint with reviewdog
-        uses: reviewdog/action-stylelint@v1
-        with:
-          github_token: ${{ secrets.github_token }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-review
           stylelint_input: '**/*.css'
