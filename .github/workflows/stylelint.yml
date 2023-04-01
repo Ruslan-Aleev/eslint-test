@@ -1,24 +1,29 @@
-name: reviewdog
-on: [pull_request]
+name: lint
+on: pull_request
 
 jobs:
   stylelint:
-    name: runner / stylelint
+    name: style
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
+
       - uses: actions/setup-node@v3
         with:
           node-version: 16
           cache: 'npm'
-      - run: npm ci
 
-      - name: Run stylelint with reviewdog
-        uses: reviewdog/action-stylelint@v1
+      - name: Install Node JS Dependencies
+        run: |
+          npm install
+        env:
+          CI: true
+
+      - uses: LifeOfChaos/action-stylelint-reviewdog@v1
+        name: Running stylelint with Reviewdog 🐶
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-review
-          packages: 'stylelint-config-standard stylelint-order stylelint-config-rational-order'
-          stylelint_config: '.stylelintrc.json'
-          stylelint_input: '**/*.css'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          level: 'error'
+          linter_command: 'stylelint'
