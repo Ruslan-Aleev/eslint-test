@@ -1,0 +1,39 @@
+name: Lint
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  stylelint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-hub/stylelint@master
+        env:
+          CONFIG_PATH: .stylelintrc.json
+          PATTERN: '*.css'
+          INDENT_SPACES: 4
+
+  eslint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run eslint on changed files
+        uses: tj-actions/eslint-changed-files@v18
+        with:
+          config_path: .eslintrc
+          file_extensions: '**/*.js'
+          extra_args: '--max-warnings=0'
+          all_files: true
+          ignore_path: .eslintignore
