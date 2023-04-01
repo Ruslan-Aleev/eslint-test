@@ -1,39 +1,18 @@
-name: Lint
-
+name: Primary Linter
 on:
-  pull_request:
-    types: [opened, synchronize]
+  pull_request
 
 jobs:
   stylelint:
-    name: stylelint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Use Node.js
-        uses: actions/setup-node@v3
+      - name: Check out PR \# ${{ github.event.pull_request.number }}
+        uses: actions/checkout@v2
         with:
-          node-version: 16
-      - run: npm ci
-
-      - name: Reset permissions
-        shell: bash
-        run: sudo chown -R root:root $GITHUB_WORKSPACE
-
-      - name: Fix for https://github.com/reviewdog/action-stylelint/issues/78
-        shell: bash
-        run: git config --global --add safe.directory "$GITHUB_WORKSPACE" || exit 1
-
-      - name: reviewdog stylelint
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Run stylelint with reviewdog
         uses: reviewdog/action-stylelint@v1
         with:
+          github_token: ${{ secrets.github_token }}
           reporter: github-pr-review
-          packages: 'stylelint-order'
           stylelint_input: '**/*.css'
-          stylelint_config: .stylelint.json
-          fail_on_error: true
-
-      - name: Reset permissions
-        shell: bash
-        run: sudo chown -R $USER:$USER $GITHUB_WORKSPACE
