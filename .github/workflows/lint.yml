@@ -13,7 +13,7 @@ jobs:
       - uses: actions-hub/stylelint@master
         env:
           CONFIG_PATH: .stylelintrc.json
-          PATTERN: '*.css'
+          PATTERN: '**/*.css'
           INDENT_SPACES: 4
 
   eslint:
