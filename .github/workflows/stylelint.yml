@@ -11,6 +11,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm ci
+
       - name: Reset permissions
         shell: bash
         run: sudo chown -R root:root $GITHUB_WORKSPACE
