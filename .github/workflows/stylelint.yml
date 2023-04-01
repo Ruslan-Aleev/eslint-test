@@ -5,8 +5,6 @@ jobs:
   stylelint:
     name: runner / stylelint
     runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
 
     steps:
       - uses: actions/checkout@v3
@@ -19,5 +17,5 @@ jobs:
           reporter: github-pr-review
           filter_mode: diff_context
           packages: 'stylelint-config-standard stylelint-order stylelint-config-rational-order'
-          stylelint_config: './.stylelintrc.json'
+          stylelint_config: '.stylelintrc'
           stylelint_input: '**/*.css'

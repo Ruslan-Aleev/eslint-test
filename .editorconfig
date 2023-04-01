@@ -11,5 +11,5 @@ charset = utf-8
 [*.js]
 indent_size = 2
 
-[{*.json,*.yml,.eslintrc}]
+[{*.json,*.yml,.eslintrc,.stylelintrc}]
 indent_size = 2
