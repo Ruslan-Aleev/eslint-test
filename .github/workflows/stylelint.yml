@@ -12,18 +12,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: 'npm'
 
-      - name: Install Node JS Dependencies
-        run: |
-          npm install
-        env:
-          CI: true
-
-      - uses: LifeOfChaos/action-stylelint-reviewdog@v1
-        name: Running stylelint with Reviewdog 🐶
-        with:
-          reporter: github-pr-review
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          level: 'error'
-          linter_command: 'stylelint'
+      - uses: xt0rted/stylelint-problem-matcher@v1
+      - run: npm ci
+      - run: npm stylelint
