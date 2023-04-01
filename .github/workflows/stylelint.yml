@@ -7,37 +7,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Reset permissions
-        shell: bash
-        run: sudo chown -R $USER:$USER $GITHUB_WORKSPACE
-
       - uses: actions/checkout@v3
-
       - uses: actions/setup-node@v3
         with:
           node-version: 16
           cache: 'npm'
       - run: npm ci
 
-      - name: Reset permissions
-        shell: bash
-        run: sudo chown -R root:root $GITHUB_WORKSPACE
-
-      - name: Fix for https://github.com/reviewdog/action-stylelint/issues/78
-        shell: bash
-        run: git config --global --add safe.directory "$GITHUB_WORKSPACE" || exit 1
-
       - name: Run stylelint with reviewdog
         uses: reviewdog/action-stylelint@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          fail_on_error: true
           reporter: github-pr-review
-          filter_mode: diff_context
           packages: 'stylelint-config-standard stylelint-order stylelint-config-rational-order'
           stylelint_config: '.stylelintrc.json'
           stylelint_input: '**/*.css'
-
-      - name: Reset permissions
-        shell: bash
-        run: sudo chown -R $USER:$USER $GITHUB_WORKSPACE
