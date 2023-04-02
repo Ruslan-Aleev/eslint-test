@@ -8,7 +8,7 @@
     "eslint": "npx eslint .",
     "stylelint": "stylelint \"**/*.css\"",
     "lint": "npm run eslint & npm run stylelint",
-    "stylelint-install": "npm install stylelint stylelint-config-standard stylelint-order stylelint-config-rational-order"
+    "stylelint-install": "npm install stylelint stylelint-config-standard stylelint-order stylelint-config-clean-order"
   },
   "keywords": [],
   "author": "",
