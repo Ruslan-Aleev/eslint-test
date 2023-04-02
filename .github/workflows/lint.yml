@@ -6,18 +6,22 @@ on:
 
 jobs:
   stylelint:
+    name: runner / stylelint
     runs-on: ubuntu-latest
+
+    permissions:
+      pull-requests: write
 
     steps:
       - uses: actions/checkout@v3
-
-      - uses: actions/setup-node@v3
+      - uses: reviewdog/action-stylelint@v1
         with:
-          node-version: 14
-          cache: npm
-
-      - run: npm run stylelint-install
-      - run: npx stylelint "**/*.css" --formatter=github
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-pr-review
+          packages: 'stylelint-order stylelint-config-clean-order'
+          stylelint_config: .stylelintrc.json
+          stylelint_input: '**/*.css'
+          fail_on_error: true
 
   eslint:
     runs-on: ubuntu-latest
