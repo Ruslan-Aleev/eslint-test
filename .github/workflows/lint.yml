@@ -6,7 +6,6 @@ on:
 
 jobs:
   stylelint:
-    name: runner / stylelint
     runs-on: ubuntu-latest
 
     permissions:
@@ -21,6 +20,8 @@ jobs:
           packages: 'stylelint-order stylelint-config-clean-order'
           stylelint_config: .stylelintrc.json
           stylelint_input: '**/*.css'
+          fail_on_error: true
+          filter_mode: diff_context
 
   eslint:
     runs-on: ubuntu-latest
