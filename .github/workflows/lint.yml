@@ -17,7 +17,7 @@ jobs:
           cache: npm
 
       - run: npm run stylelint-install
-      - run: npx stylelint "**/*.css" --formatter=github
+      - run: npx stylelint "**/*.css" --formatter=github --config=".stylelintrc.json"
 
   eslint:
     runs-on: ubuntu-latest
