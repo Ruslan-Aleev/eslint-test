@@ -1,7 +1,7 @@
 {
   "extends": [
     "stylelint-config-standard",
-    "stylelint-config-rational-order"
+    "stylelint-config-clean-order"
   ],
   "plugins": ["stylelint-order"],
   "ignoreFiles": ["**/*.min.css"],

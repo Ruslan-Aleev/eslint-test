@@ -1,6 +1,6 @@
 /* Main styles */
 a.link, a.ms2-link { color: #005580; }
-.x-color-palette { width: 80%; height: auto; cursor: pointer; }
+.x-color-palette { cursor: pointer; width: 80%; height: auto; }
 .action-red { color: darkred !important; }
 .x-btn-over .action-red { color: white !important; }
 .action-green { color: darkgreen !important; }
@@ -34,8 +34,8 @@ a.link, a.ms2-link { color: #005580; }
 .minishop2-row-unpublished span,
 .minishop2-row-unpublished a,
 .minishop2-row-inactive div {
-    color: #aaa !important;
     font-style: italic;
+    color: #aaa !important;
 }
 
 .minishop2-row-deleted div,
@@ -107,7 +107,7 @@ a.x-menu-item .x-menu-item-text .icon { top: auto; line-height: 16px; }
 .minishop2-window .x-panel-mc,
 .minishop2-window .x-tab-panel-bwrap > .x-tab-panel-body > .x-panel { margin-top: -14px; }
 .minishop2-window .x-window-body.tabs { padding: 5px 10px 0; }
-.minishop2-window .desc { padding-top: 5px; color: #555; font-style: italic; }
+.minishop2-window .desc { padding-top: 5px; font-style: italic; color: #555; }
 
 /* Tree */
 .minishop2-panel .x-tree-root-ct,
@@ -124,7 +124,9 @@ a.x-menu-item .x-menu-item-text .icon { top: auto; line-height: 16px; }
 #minishop2-orders-info {
     height: 95px;
     padding: 10px;
+
     text-align: center;
+
     background: #f9f9f9;
     border-radius: 5px;
 }
@@ -154,19 +156,19 @@ a.x-menu-item .x-menu-item-text .icon { top: auto; line-height: 16px; }
 .x-grid3-col-product-image img,
 .x-grid3-col-product-thumb img,
 .x-grid3-col-vendor-logo img,
-.x-grid3-col-image img {
+.x-grid3-col-image img{
     display: block;
     max-height: 40px;
 }
 
-.x-grid3-col-product-title .id { padding-right: 5px; color: #555; font-size: 90%; }
-.x-grid3-col-product-title .product-category { padding-top: 7px; color: #555; font-size: 80%; }
+.x-grid3-col-product-title .id { padding-right: 5px; font-size: 90%; color: #555; }
+.x-grid3-col-product-title .product-category { padding-top: 7px; font-size: 80%; color: #555; }
 .x-grid3-col-product-title .product-category a { color: #555; text-decoration: none; }
 .x-grid3-col-product-title .product-category a:hover { color: #005580; text-decoration: underline; }
 .x-grid3-col-product-title .native-product { padding-top: 13px; }
 .x-grid3-col-product-title .native-product .ms2-link { font-weight: bold; }
 .x-grid3-col-product-title .nested-product { padding-top: 5px; }
-#minishop2-product-tabs { margin-top: 0; padding: 5px 2px; overflow: hidden; }
+#minishop2-product-tabs { overflow: hidden; margin-top: 0; padding: 5px 2px; }
 #minishop2-product-tabs > .x-tab-panel-header { padding: 0 10px; }
 #minishop2-product-tabs .x-tab-strip { background-color: transparent !important; }
 
@@ -185,16 +187,19 @@ a.x-menu-item .x-menu-item-text .icon { top: auto; line-height: 16px; }
 
 /* Gallery */
 #minishop2-gallery-page.drag-over::after {
+    content: "";
+
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
+
     display: block;
+
+    opacity: 0.1;
     background: forestgreen;
     border: 5px solid darkgreen;
-    opacity: 0.1;
-    content: "";
 }
 
 /* Images list */
