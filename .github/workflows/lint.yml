@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
+      contents: read
       pull-requests: write
 
     steps:
@@ -21,26 +22,20 @@ jobs:
           stylelint_config: .stylelintrc.json
           stylelint_input: '**/*.css'
           fail_on_error: true
-          filter_mode: diff_context
+          filter_mode: nofilter
 
   eslint:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: read
+      pull-requests: write
+
     steps:
       - uses: actions/checkout@v3
-
-      - uses: actions/setup-node@v3
+      - uses: reviewdog/action-eslint@v1
         with:
-          node-version: 14
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run eslint on changed files
-        uses: tj-actions/eslint-changed-files@v18
-        with:
-          config_path: .eslintrc
-          file_extensions: '**/*.js'
-          extra_args: '--max-warnings=0'
-          all_files: true
-          ignore_path: .eslintignore
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-pr-review
+          fail_on_error: true
+          filter_mode: nofilter
