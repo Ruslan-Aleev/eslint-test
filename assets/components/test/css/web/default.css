@@ -32,11 +32,11 @@ div.jGrowl > .ui-state-highlight {
 #msProduct .old_price, #msCart .old_price, .ms2_product .old_price {
     font-style: italic;
     color: brown;
-    text-decoration: line-through;
+    text-decoration: line-through
 }
 
 /* Order */
-#msOrder { margin-top: 50px; }
+#msOrder { margin-top: 50px; margin-bottom: 0px;}
 #msOrder .radio { min-height: 30px; margin-bottom: 10px; }
 #msOrder .radio img { max-height: 30px; margin-top: -2px; padding: 0 10px; }
 #msOrder .required-star { display: none; color: brown; }
@@ -61,7 +61,7 @@ div.jGrowl > .ui-state-highlight {
 
 .ms-input-number-wrap {
     display: flex;
-    font-size: 16px;
+    font-size: 16;
 }
 
 .ms-input-number-emulator {
